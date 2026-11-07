@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SLG Demo：行军、寻路、对战与重连演示。">
+  <title>SLG Demo · 在线演示</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, "Microsoft YaHei", sans-serif; background: #101513; color: #eef4ef; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; }
+    main { width: min(1500px, 94%); margin: 0 auto; padding: clamp(28px, 6vw, 72px) 0; }
+    .label { color: #a5cdb0; font-size: 13px; letter-spacing: .14em; }
+    h1 { font-size: clamp(27px, 4vw, 42px); margin: 12px 0 10px; letter-spacing: -.03em; }
+    .intro { color: #aab6ae; line-height: 1.7; margin: 0 0 28px; }
+    .player { background: #050706; border: 1px solid #35433a; border-radius: 12px; overflow: hidden; }
+    video { display: block; width: 100%; aspect-ratio: 2560 / 752; min-height: 180px; object-fit: contain; }
+    .footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; margin-top: 20px; color: #aab6ae; font-size: 14px; line-height: 1.7; }
+    nav { display: flex; flex-wrap: wrap; gap: 20px; }
+    a { color: #cae9d2; text-underline-offset: 4px; }
+    a:hover { color: #fff; }
+    a:focus-visible { outline: 2px solid #cae9d2; outline-offset: 5px; }
+    #error { padding: 16px 20px; background: #3b2823; color: #ffe0d3; margin: 0; line-height: 1.7; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="label">SLG DEMO</div>
+    <h1>行军、寻路、对战、重连</h1>
+    <p class="intro">点击播放观看完整演示，可使用播放器控件调节音量、进度和全屏。</p>
+    <section class="player" aria-label="演示视频">
+      <video id="demo" controls playsinline preload="metadata" aria-label="行军、寻路、对战、重连演示视频">
+        <source src="./行军、寻路、对战、重连_在线播放.mp4" type="video/mp4">
+        你的浏览器暂不支持视频播放，请使用下方的下载链接观看。
+      </video>
+      <p id="error" role="alert" hidden>视频暂时无法加载。请检查网络后刷新页面，或使用下方的下载链接观看。</p>
+    </section>
+    <div class="footer">
+      <span>完整演示约 4 分 39 秒 · 30.4 MiB</span>
+      <nav aria-label="视频和仓库链接">
+        <a href="./行军、寻路、对战、重连_在线播放.mp4" download>下载视频</a>
+        <a href="https://gitee.com/the-law-of-liang/slgdemo">Gitee 仓库</a>
+        <a href="https://github.com/296022884/SimulationGameLikeDemo">GitHub 仓库</a>
+      </nav>
+    </div>
+  </main>
+  <script>
+    const player = document.getElementById('demo');
+    const error = document.getElementById('error');
+    function showError() { error.hidden = false; }
+    player.addEventListener('error', showError);
+    player.querySelector('source').addEventListener('error', showError);
+    player.addEventListener('loadeddata', () => { error.hidden = true; });
+  </script>
+</body>
+</html>
